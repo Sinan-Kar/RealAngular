@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+
+.container {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+h3 {
+  background-color: #17a2b8;
+  color: white;
+  text-align: center;
+}
