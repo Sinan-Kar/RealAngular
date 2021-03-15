@@ -11,6 +11,7 @@ import { CarComponent } from './components/car/car.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { NaviComponent } from './components/navi/navi.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CarDetailComponent } from './components/car-detail/car-detail.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FooterComponent } from './components/footer/footer.component';
     CarComponent,
     RentalComponent,
     NaviComponent,
-    FooterComponent
+    FooterComponent,
+    CarDetailComponent
   ],
   imports: [
     BrowserModule,
