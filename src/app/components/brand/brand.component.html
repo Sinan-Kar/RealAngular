@@ -1,15 +1,42 @@
-<div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
-    <span class="visually-hidden">Loading...</span>
+<div class="mb-3">
+  <label for="filterText" class="form-label">Car Name</label>
+  <input
+    type="text"
+    [(ngModel)]="filterText"
+    class="form-control"
+    id="filterText"
+    placeholder="Arama..."
+  />
+</div>
+<div *ngIf="filterText.length > 1" class="alert alert-success">
+  Şunu aradınız {{ filterText }}
+</div>
+
+<div
+  *ngIf="dataLoaded == false"
+  class="spinner-border text-primary"
+  role="status"
+>
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+<div class="row">
+  <div
+    *ngFor="let brand of brands | filterBrandPipe: filterText"
+    class="card text-dark bg-light border-primary mb-3 mx-3 col-md-4"
+    style="max-width: 18rem"
+    routerLink="/cars/brand/{{ brand.id }}"
+  >
+    <div class="card-body mx-2">
+      {{ brand.brandName }}
+    </div>
+    <div class="card-footer">
+      <button
+        class="btn-sm btn-primary"
+        routerLink="/brands/update/{{ brand.id }}"
+      >
+        Güncelle
+      </button>
+    </div>
   </div>
-<table *ngIf="dataLoaded==true" class="table">
-    <thead>
-        <th>Brand Id</th>
-        <th>Brand Name</th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let brand of brands">
-            <td>{{brand.brandId}}</td>
-            <td>{{brand.brandName}}</td>
-        </tr>
-    </tbody>
-</table> 
+</div>
