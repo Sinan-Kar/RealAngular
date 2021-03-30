@@ -20,11 +20,8 @@ export class FilterComponent implements OnInit {
       this.router.navigate([
         `cars/brand/${Filters.brandId}/color/${Filters.colorId}`,
       ]);
-    } else if (Filters['brandId']) {
-      this.router.navigate([`cars/brand/${Filters.brandId}`]);
-    } else if (Filters['colorId']) {
-      this.router.navigate([`cars/color/${Filters.colorId}`]);
-    } else {
+    }
+    return {
       this.router.navigate([`cars/`]);
     }
   }
