@@ -40,6 +40,7 @@ export class PaymentComponent implements OnInit {
     var expirationMonth = this.localStorageService.get('ExpirationMonth');
     var cardNumber = this.localStorageService.get('CartNumber');
     var cvv = this.localStorageService.get('Cvv');
+   
     if (cardHolderName != null && expirationMonth != null && expirationYear != null && cardNumber != null && cvv != null) {
       this.fakeCreditCard.cardHolderName = cardHolderName;
       this.fakeCreditCard.expirationYear = parseInt(expirationYear);

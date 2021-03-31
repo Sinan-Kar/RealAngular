@@ -1,40 +1,34 @@
-import { ResponseModel } from './../models/responseModel';
-import { Color } from './../models/color';
-import { ListResponseModel } from './../models/listResponseModel';
+l
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Color } from '../models/color';
+import { ListResponseModel } from '../models/listResponseModel';
+import {environment} from '../../environments/environment';
+import {ResponseModel} from '../models/responseModel';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ColorService {
-  apiUrl = 'https://localhost:44397/api/';
+  apiUrl =  environment.apiUrl
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient:HttpClient) { }
 
-  getColors(): Observable<ListResponseModel<Color>> {
-    return this.httpClient.get<ListResponseModel<Color>>(
-      this.apiUrl + 'colors/getall'
-    );
+  getColors():Observable<ListResponseModel<Color>>{
+    return this.httpClient.get<ListResponseModel<Color>>(this.apiUrl+ 'colors')
   }
 
-  add(color: Color): Observable<ResponseModel> {
-    return this.httpClient.post<ResponseModel>(
-      this.apiUrl + 'colors/add',
-      color
-    );
+  getColorById(id: number): Observable<ListResponseModel<Color>> {
+    return this.httpClient.get<ListResponseModel<Color>>(this.apiUrl + 'colors/id?id=' + id);
   }
 
-  update(color: Color): Observable<ResponseModel> {
-    return this.httpClient.post<ResponseModel>(
-      this.apiUrl + 'colors/update',
-      color
-    );
+  addToColor(color:Color):Observable<ResponseModel>{
+    return this.httpClient.post<ResponseModel>(this.apiUrl + 'colors/add',color);
   }
 
-  getColorById(colorId: number): Observable<ListResponseModel<Color>> {
-    let newPath = this.apiUrl + 'colors/getbyid?id=' + colorId;
-    return this.httpClient.get<ListResponseModel<Color>>(newPath);
+  updateColor(color: Color): Observable<ResponseModel> {
+    return this.httpClient.post<ResponseModel>(this.apiUrl + 'colors/update', color);
   }
+
 }

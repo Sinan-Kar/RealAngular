@@ -1,8 +1,14 @@
-export interface Car {
-  id: number;
-  modelYear: string;
-  dailyPrice: number;
-  descriptions: string;
-  brandId: number;
-  colorId: number;
+export interface Car{
+    id:number;
+    brandId:number;
+    brandName:string;
+    colorId:number;
+    colorName:string;
+    modelYear:number;
+    dailyPrice:number;
+    description:string;
+    imageId:number;
+    imagePath:string;
+    date:Date;
+    findeksScore:number;
 }

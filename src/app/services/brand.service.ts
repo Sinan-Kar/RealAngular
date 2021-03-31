@@ -1,40 +1,34 @@
-import { ResponseModel } from './../models/responseModel';
-import { Brand } from './../models/brand';
-import { ListResponseModel } from './../models/listResponseModel';
-import { HttpClient } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { ListResponseModel } from '../models/listResponseModel';
+import { Brand } from '../models/brand';
+import { environment } from 'src/environments/environment';
+import {ResponseModel} from '../models/responseModel';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class BrandService {
-  apiUrl = 'https://localhost:44397/api/';
+  apiUrl = environment.apiUrl
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient:HttpClient) { }
 
-  getBrands(): Observable<ListResponseModel<Brand>> {
-    return this.httpClient.get<ListResponseModel<Brand>>(
-      this.apiUrl + 'brands/getall'
-    );
+  getBrands():Observable<ListResponseModel<Brand>>{
+    return this.httpClient.get<ListResponseModel<Brand>>(this.apiUrl+ 'brands/');
   }
 
-  add(brand: Brand): Observable<ResponseModel> {
-    return this.httpClient.post<ResponseModel>(
-      this.apiUrl + 'brands/add',
-      brand
-    );
+  addToBrand(brand:Brand):Observable<ResponseModel>{
+    return this.httpClient.post<ResponseModel>(this.apiUrl+ 'brands/add',brand);
   }
 
-  update(brand: Brand): Observable<ResponseModel> {
-    return this.httpClient.post<ResponseModel>(
-      this.apiUrl + 'brands/update',
-      brand
-    );
+  updateBrand(brand: Brand): Observable<ResponseModel> {
+    return this.httpClient.post<ResponseModel>(this.apiUrl + 'brands/update', brand);
   }
 
-  getBrandById(brandId: number): Observable<ListResponseModel<Brand>> {
-    let newPath = this.apiUrl + 'brands/getbyid?id=' + brandId;
-    return this.httpClient.get<ListResponseModel<Brand>>(newPath);
+  getBrandById(id: number): Observable<ListResponseModel<Brand>> {
+    return this.httpClient.get<ListResponseModel<Brand>>(this.apiUrl + 'brands/id?id='+ id);
   }
+
 }

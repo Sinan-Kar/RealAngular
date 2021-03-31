@@ -5,7 +5,6 @@ export interface User {
   firstName: string;
   lastName: string;
   email: string;
-  passwordHash: Byte[];
-  passwordSalt: Byte[];
+  password: string;
   status: boolean;
 }
